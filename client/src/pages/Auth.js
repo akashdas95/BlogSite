@@ -72,19 +72,19 @@ const Register = () =>{
 
 const Form = ({setUsername,setPassword,label,onSubmit}) =>{
    return(
-    <div>
-    <form onSubmit={onSubmit}>
-      <h2> {label}</h2>
-      <div>
-        <label htmlFor="username">username: </label>
-        <input type="text" id="username" onChange={(e)=>setUsername(e.target.value)}/>
+    <div className='flex w-full mx-0 items-center justify-center h-auto my-5'>
+    <form onSubmit={onSubmit} className='w-auto h-auto border-black border-2 flex flex-col p-5'>
+      <h2 className='text-center text-4xl bg-green-400 p-2 mb-3'> {label}</h2>
+      <div className='py-3 w-full'>
+        <label htmlFor="username" className='text-2xl'>username: </label>
+        <input type="text" id="username" onChange={(e)=>setUsername(e.target.value)} className='border-2 border-black'/>
       </div>
-      <div>
-        <label htmlFor="password">password: </label>
-        <input type="password" id="password" onChange={(e)=>setPassword(e.target.value)}/>
+      <div className='py-3'>
+        <label htmlFor="password" className='text-2xl'>password: </label>
+        <input type="password" id="password" onChange={(e)=>setPassword(e.target.value)} className='border-2 border-black'/>
       </div>
 
-      <button type='submit'>{label}</button>
+      <button type='submit' className='border-2 w-fit mx-auto p-1 rounded hover:bg-green-400 border-black'>{label}</button>
     </form>
    </div>
    )

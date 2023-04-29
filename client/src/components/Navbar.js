@@ -16,18 +16,23 @@ function Navbar() {
 
   console.log(cookies);
   return (
-    <div className='navbar'>
-      <Link to="/">Home</Link>
-      <Link to="/createPost">Create Post</Link>
+    <div className='flex w-full mx-0 p-5 bg-green-400 '>
+    <div className='w-1/2 h-auto'>
+      <h1 className='text-3xl font-extrabold hover:cursor-pointer hover:tracking-wider duration-300 '>HOW TO?</h1>
+    </div>
+    <div className='flex text-2xl gap-5'>
+      <Link to="/" className='hover:scale-105 duration-300 hover:text-white '>Home</Link>
+      <Link to="/createPost" className='hover:scale-105 duration-300 hover:text-white '>Create Post</Link>
       
       {cookies.access_token === "undefined" ?
-       (<Link to="/auth">Register/Login</Link>) : ( 
+       (<Link to="/auth" className='hover:scale-105 duration-300 hover:text-white'>Register/Login</Link>) : ( 
         <>
-          <Link to="/savedPost">Saved Post</Link>
-          <button onClick={Logout}>Logout</button>
+          <Link to="/savedPost" className='hover:scale-105 duration-300 hover:text-white'>Saved Post</Link>
+          <button className='hover:scale-105 duration-300 hover:text-red-600' onClick={Logout}>Logout</button>
         </>
         )
       }
+      </div>
     </div>
   )
 }
