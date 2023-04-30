@@ -17,7 +17,15 @@ const BlogPostSchema = new mongoose.Schema({
      type:mongoose.Schema.Types.ObjectId,
      ref: "users",
      required: true  
+    },
+    userName:{
+     type: String,
+     required: true   
     }
-})
+},
+{
+    timestamps:true
+});
+
 
 export const BlogPostModel = mongoose.model("blogPosts",BlogPostSchema);

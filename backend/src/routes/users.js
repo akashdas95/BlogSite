@@ -26,6 +26,13 @@ router.post("/register", async(req, res)=>{
 router.post("/login", async(req,res)=>{
     const {username, password} = req.body;
 
+    if(!username){
+        return res.json({message:"Please enter the user name"});
+    }
+    if(!password){
+        return res.json({message:"Please enter the password"});
+    }
+
     const user = await UserModel.findOne({username});
 
     if(!user){
@@ -39,7 +46,7 @@ router.post("/login", async(req,res)=>{
     }
 
     const token = jwt.sign({id:user._id}, "secret");
-    res.json({token,userID: user._id});
+    res.json({token,username,userID: user._id});
 })
 
 

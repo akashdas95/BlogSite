@@ -3,7 +3,8 @@ import React, { useEffect, useState } from 'react';
 import { useCookies } from "react-cookie";
 import useGetUserId from '../hooks/useGetUserId';
 
- const Home = () => {
+
+const Home = () => {
 
   const [posts, setPosts] = useState([]);
   const [savedPosts, setSavedPosts] = useState([]);
@@ -16,6 +17,7 @@ import useGetUserId from '../hooks/useGetUserId';
       try{
         const res = await axios.get("http://localhost:3001/blogPosts")
         setPosts(res.data);
+        console.log(res.data);
       }catch(err){
         console.error(err)
       }
@@ -61,17 +63,18 @@ import useGetUserId from '../hooks/useGetUserId';
 
   return (
     <div className='flex flex-col w-auto h-auto mx-2 place-items-center '>
-      <h1 className='text-center text-3xl font-semibold py-5'>Blog Posts</h1>
-      <ul className='grid grid-cols-2 gap-2'>
+      <h1 className='text-center text-4xl font-semibold py-5'>Blog Posts</h1>
+      <ul className='grid grid-col-1 md:grid-cols-2 gap-2'>
       {posts?.map((post)=>(
         <li key={post._id} className='w-full mx-0 flex flex-col  border-2 border-black bg-slate-100'>
-          <div className='w-full place-items-center mx-0 relative' >
-            <h2 className='text-2xl py-2 text-center w-full'>{post.title}</h2>
-            <button onClick={()=> savePost(post._id)} disabled={isPostSaved(post._id)} className='rounded border-2 absolute border-black px-2 top-1 left-1 hover:bg-green-400' >
+          <div className='w-full place-items-center mx-0 p-3 relative' >
+            <h2 className='text-3xl pt-6 py-2 text-center w-full'>{post.title}</h2>
+            <button onClick={()=> savePost(post._id)} disabled={isPostSaved(post._id)} className={`rounded border-2 absolute border-black px-2 top-1 left-1 hover:bg-green-400 ${isPostSaved(post._id)?"bg-green-400":"bg-slate-100"}`} >
               {isPostSaved(post._id)?"saved":"save"}
             </button>
-            <img src={post.imageURL} alt={post.title} className='w-full h-9/12 mx-0'/>
+            <img src={post.imageURL} alt={post.title} className='w-full h-1/2 mx-0'/>
             <p className='text-xl py-3'>{post.description}</p>
+            <p className='absolute top-1 right-1'>Created by: {post.userName}</p>
           </div>
         </li>
       ))}
